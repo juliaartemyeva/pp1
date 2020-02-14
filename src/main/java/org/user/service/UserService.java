@@ -8,14 +8,14 @@ import java.sql.Connection;
 import java.util.List;
 
 public class UserService implements Service {
-    private static UserService service;
+    private static Service service;
     private static Connection connection;
 
     private UserService(Connection connection) {
         this.connection = connection;
     }
 
-    public static UserService getConnection() {
+    public static Service getConnection() {
         if (service == null) {
             service = new UserService(DBHelper.getConnection());
         }
