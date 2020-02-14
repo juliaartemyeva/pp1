@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {
-    private UserService userService = UserService.getConnection();
     private Service userService = UserService.getConnection();
 
     @Override
