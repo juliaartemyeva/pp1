@@ -1,5 +1,6 @@
 package org.user.servlets;
 
+import org.user.service.Service;
 import org.user.service.UserService;
 
 import javax.servlet.ServletException;
@@ -9,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {
     private UserService userService = UserService.getConnection();
+    private Service userService = UserService.getConnection();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,3 +22,4 @@ public class DeleteUserServlet extends HttpServlet {
         resp.sendRedirect("list");
     }
 }
+

@@ -1,7 +1,7 @@
 package org.user.servlets;
 
-import org.user.dao.UserDAO;
 import org.user.model.User;
+import org.user.service.Service;
 import org.user.service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet("/edit")
 public class EditUserServlet extends HttpServlet {
-    private UserService userService = UserService.getConnection();
+    private Service userService = UserService.getConnection();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,3 +25,4 @@ public class EditUserServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 }
+
