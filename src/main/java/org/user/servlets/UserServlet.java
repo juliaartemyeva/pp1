@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.user.dao.UserDAO;
 import org.user.model.User;
 import org.user.service.UserService;
+import org.user.service.UserServiceImpl;
 
 @WebServlet("/")
 public class UserServlet extends HttpServlet {
-    private UserService userService = UserService.getConnection();
+    private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
