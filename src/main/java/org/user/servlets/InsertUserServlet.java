@@ -2,6 +2,7 @@ package org.user.servlets;
 
 import org.user.dao.UserDAO;
 import org.user.model.User;
+import org.user.service.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,15 +12,16 @@ import java.io.IOException;
 
 @WebServlet("/insert")
 public class InsertUserServlet extends HttpServlet {
+    private UserService userService = UserService.getConnection();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        UserDAO userDAO = new UserDAO();
+
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
         User newUser = new User(name, email, country);
-        userDAO.insertUser(newUser);
+        userService.insertUser(newUser);
         try {
             resp.sendRedirect("list");
         } catch (IOException e) {

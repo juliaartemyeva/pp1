@@ -11,18 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.user.dao.UserDAO;
 import org.user.model.User;
+import org.user.service.UserService;
 
 @WebServlet("/")
 public class UserServlet extends HttpServlet {
-    private UserDAO userDAO;
-
-    public void init() {
-        userDAO = new UserDAO();
-    }
+    private UserService userService = UserService.getConnection();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List <User> listUser = userDAO.selectAllUsers();
+        List <User> listUser = userService.selectAllUsers();
         req.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = req.getRequestDispatcher("user-list.jsp");
         dispatcher.forward(req, resp);

@@ -2,6 +2,7 @@ package org.user.servlets;
 
 import org.user.dao.UserDAO;
 import org.user.model.User;
+import org.user.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,21 +14,16 @@ import java.sql.SQLException;
 
 @WebServlet("/update")
 public class UpdateUserServlet extends HttpServlet {
+    private UserService userService = UserService.getConnection();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDAO userDAO = new UserDAO();
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-
         User book = new User(id, name, email, country);
-        try {
-            userDAO.updateUser(book);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        userService.updateUser(book);
         resp.sendRedirect("list");
     }
 }
