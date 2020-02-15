@@ -1,40 +1,44 @@
 package org.user.service;
 
-import org.user.dao.UserUserDAOJDBC;
+import org.user.dao.UserDAO;
+import org.user.dao.UserDAOJDBC;
 import org.user.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static UserService userService;
-    private UserUserDAOJDBC daoJDBC = UserUserDAOJDBC.getInstance();
+    private static UserServiceImpl userService = new UserServiceImpl();
+    private UserDAO dao = UserDAOJDBC.getInstance();
 
-    private UserServiceImpl() {}
+    private UserServiceImpl() {
+    }
 
     public static UserService getInstance() {
-        if (userService == null) {
-            userService = new UserServiceImpl();
-        }
         return userService;
     }
 
+    @Override
     public void insertUser(User user) {
-        daoJDBC.insertUser(user);
+        dao.insertUser(user);
     }
 
+    @Override
     public User selectUser(int id) {
-        return daoJDBC.selectUser(id);
+        return dao.selectUser(id);
     }
 
+    @Override
     public List <User> selectAllUsers() {
-        return daoJDBC.selectAllUsers();
+        return dao.selectAllUsers();
     }
 
-    public boolean deleteUser(int id) {
-        return daoJDBC.deleteUser(id);
+    @Override
+    public void deleteUser(int id) {
+        dao.deleteUser(id);
     }
 
-    public boolean updateUser(User user) {
-        return daoJDBC.updateUser(user);
+    @Override
+    public void updateUser(User user) {
+        dao.updateUser(user);
     }
 }
