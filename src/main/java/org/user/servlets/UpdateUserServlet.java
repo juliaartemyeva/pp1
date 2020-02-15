@@ -21,8 +21,8 @@ public class UpdateUserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-        User book = new User(id, name, email, country);
-        userService.updateUser(book);
+        User user = new User(id, name, email, country);
+        userService.updateUser(user);
         resp.sendRedirect("list");
     }
 }

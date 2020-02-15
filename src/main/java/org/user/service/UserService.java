@@ -11,8 +11,7 @@ public interface Service {
 
     List <User> selectAllUsers();
 
-    boolean deleteUser(int id);
+    void deleteUser(int id);
 
-    boolean updateUser(User user);
-
+    void updateUser(User user);
 }

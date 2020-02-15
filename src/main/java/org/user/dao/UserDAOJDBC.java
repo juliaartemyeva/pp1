@@ -8,17 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOJDBC implements UserDAO {
-    private Connection connection;
-    private static UserDAOJDBC daoJDBC;
+    private Connection connection = DBHelper.getConnection();
+    private static UserDAOJDBC daoJDBC = new UserDAOJDBC();
 
     private UserDAOJDBC() {
-        connection = DBHelper.getConnection();
     }
 
     public static UserDAOJDBC getInstance() {
-        if (daoJDBC == null) {
-            daoJDBC = new UserDAOJDBC();
-        }
         return daoJDBC;
     }
 
