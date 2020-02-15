@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet("/edit")
 public class EditUserServlet extends HttpServlet {
-    private Service userService = UserService.getConnection();
+    private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

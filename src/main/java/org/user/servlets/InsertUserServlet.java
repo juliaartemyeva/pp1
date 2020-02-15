@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/insert")
 public class InsertUserServlet extends HttpServlet {
-    private UserService userService = UserService.getConnection();
+    private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
